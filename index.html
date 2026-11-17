@@ -111,13 +111,13 @@
     .main-wrapper {
       position: relative;
       z-index: 3;
-      max-width: 1100px;
+      max-width: 840px;
       margin: 0 auto;
-      padding: 40px 20px 90px;
+      padding: 30px 20px 90px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 32px;
     }
 
     /* Header Section */
@@ -170,22 +170,17 @@
       45% { transform: scale(1.2); }
     }
 
-    /* Main Showcase: Grid layout (Slideshow + Letter) */
+    /* Main Showcase: Stacked Flow (Slideshow then Letter) */
     .showcase-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 32px;
       width: 100%;
-    }
-    @media (min-width: 950px) {
-      .showcase-grid {
-        grid-template-columns: 1.15fr 0.85fr;
-        align-items: start;
-      }
     }
 
     /* SLIDESHOW CARD */
     .slideshow-card {
+      width: 100%;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
@@ -358,18 +353,19 @@
       object-fit: cover;
     }
 
-    /* ROMANTIC LETTER CARD (SIMPLIFIED NATURAL B2 ENGLISH) */
+    /* ROMANTIC LETTER CARD (WIDE & COZY) */
     .letter-card {
+      width: 100%;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 30px 26px;
+      padding: 38px 36px;
       backdrop-filter: blur(12px);
       box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
       background-image: radial-gradient(circle at top right, rgba(255, 140, 60, 0.12), transparent 60%);
     }
 
@@ -386,7 +382,7 @@
 
     .letter-salutation {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.3rem;
+      font-size: 2.6rem;
       color: var(--warm-gold);
       line-height: 1;
       text-shadow: 0 0 12px rgba(246, 200, 122, 0.35);
@@ -394,15 +390,15 @@
 
     .letter-body {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      line-height: 1.8;
+      font-size: 1.12rem;
+      line-height: 1.85;
       color: #faebd7;
       user-select: text;
       -webkit-user-select: text;
     }
 
     .letter-body p {
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .letter-body .highlight {
