@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Happy Anniversary, Blu ❤️ | From Russ</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --warm-gold: #f6c87a;
+      --fire-glow: #ff7733;
+      --cozy-dark: #120b08;
+      --card-bg: rgba(28, 18, 14, 0.82);
+      --card-border: rgba(246, 200, 122, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cozy-dark);
+      color: #f7e6d4;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Ambient Cozy Background with warm lighting */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 100%, rgba(217, 83, 30, 0.35) 0%, rgba(70, 24, 11, 0.6) 40%, #0d0705 90%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(5, 3, 2, 0.8) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Falling Snow Canvas & Embers Canvas */
+    #snow-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Floating Lantern / Fairy Lights Header */
+    .fairy-lights {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 28px;
+      display: flex;
+      justify-content: space-around;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .light-bulb {
+      width: 10px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ffdda1;
+      box-shadow: 0 0 12px 3px rgba(255, 204, 102, 0.8);
+      animation: twinkle 2.5s infinite alternate ease-in-out;
+    }
+    .light-bulb:nth-child(2n) {
+      animation-duration: 3.2s;
+      animation-delay: 0.5s;
+      background: #ffaa66;
+      box-shadow: 0 0 12px 3px rgba(255, 130, 70, 0.7);
+    }
+    .light-bulb:nth-child(3n) {
+      animation-duration: 1.8s;
+      animation-delay: 1s;
+      background: #ffe8b8;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 6px #fff); }
+    }
+
+    /* Container */
+    .main-wrapper {
+      position: relative;
+      z-index: 3;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+
+    /* Header Section */
+    .hero-header {
+      text-align: center;
+      margin-top: 10px;
+      position: relative;
+    }
+    .hero-subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: var(--warm-gold);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      text-shadow: 0 0 15px rgba(246, 200, 122, 0.4);
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 6vw, 3.8rem);
+      font-weight: 700;
+      color: #fff6ee;
+      line-height: 1.15;
+      text-shadow: 0 3px 25px rgba(255, 120, 50, 0.35);
+    }
+    .hero-names {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(246, 200, 122, 0.1);
+      border: 1px solid rgba(246, 200, 122, 0.3);
+      padding: 6px 20px;
+      border-radius: 999px;
+      margin-top: 14px;
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .heart-pulse {
+      color: #ff5252;
+      display: inline-block;
+      animation: heartbeat 1.4s infinite ease-in-out;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.3); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.2); }
+    }
+
+    /* Main Showcase: Grid layout (Slideshow + Letter) */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      width: 100%;
+    }
+    @media (min-width: 950px) {
+      .showcase-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: start;
+      }
+    }
+
+    /* SLIDESHOW CARD */
+    .slideshow-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .slideshow-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .photo-tag {
+      background: rgba(18, 11, 8, 0.75);
+      border: 1px solid rgba(246, 200, 122, 0.4);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      color: #f7e6d4;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .photo-counter {
+      font-size: 0.82rem;
+      color: var(--warm-gold);
+      background: rgba(0,0,0,0.3);
+      padding: 4px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(246, 200, 122, 0.2);
+    }
+
+    .slideshow-frame {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #080403;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7), inset 0 0 20px rgba(0,0,0,0.8);
+      border: 2px solid rgba(246, 200, 122, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    @media (min-width: 600px) {
+      .slideshow-frame {
+        height: 440px;
+      }
+    }
+
+    .slide-item {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+      transform: scale(0.97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .slide-item.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+    .slide-item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Slideshow Controls */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      background: rgba(246, 200, 122, 0.15);
+      border: 1px solid rgba(246, 200, 122, 0.3);
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .nav-btn:hover {
+      background: rgba(246, 200, 122, 0.35);
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(246, 200, 122, 0.4);
+    }
+
+    .caption-box {
+      text-align: center;
+      font-style: italic;
+      color: #e8d0bc;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      border-left: 3px solid var(--warm-gold);
+      flex: 1;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Thumbnail Strip */
+    .thumb-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 2px 8px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(246, 200, 122, 0.4) transparent;
+    }
+    .thumb-strip::-webkit-scrollbar {
+      height: 6px;
+    }
+    .thumb-strip::-webkit-scrollbar-thumb {
+      background: rgba(246, 200, 122, 0.3);
+      border-radius: 4px;
+    }
+    .thumb-btn {
+      width: 58px;
+      height: 46px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thumb-btn.active, .thumb-btn:hover {
+      opacity: 1;
+      border-color: var(--warm-gold);
+      box-shadow: 0 0 10px rgba(246, 200, 122, 0.5);
+      transform: translateY(-2px);
+    }
+    .thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ROMANTIC LETTER CARD (SIMPLIFIED NATURAL B2 ENGLISH) */
+    .letter-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px 26px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background-image: radial-gradient(circle at top right, rgba(255, 140, 60, 0.12), transparent 60%);
+    }
+
+    .letter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--warm-gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .letter-salutation {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      color: var(--warm-gold);
+      line-height: 1;
+      text-shadow: 0 0 12px rgba(246, 200, 122, 0.35);
+    }
+
+    .letter-body {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #faebd7;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .letter-body p {
+      margin-bottom: 15px;
+    }
+
+    .letter-body .highlight {
+      color: var(--warm-gold);
+      font-weight: 600;
+    }
+
+    .letter-signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: var(--warm-gold);
+      text-align: right;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .letter-signature span:first-child {
+      font-size: 1.15rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: #d1b8a5;
+      font-style: italic;
+    }
+
+    /* FIREPLACE WARMTH SECTION */
+    .fireplace-section {
+      width: 100%;
+      background: linear-gradient(180deg, rgba(30, 15, 10, 0.6) 0%, rgba(45, 18, 10, 0.85) 100%);
+      border: 1px solid rgba(255, 120, 50, 0.25);
+      border-radius: 20px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 40px rgba(255, 80, 20, 0.15);
+    }
+
+    .fire-pit {
+      position: relative;
+      width: 220px;
+      height: 110px;
+      margin: 8px 0 14px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .logs {
+      position: absolute;
+      bottom: 10px;
+      width: 140px;
+      height: 24px;
+      background: #381a0b;
+      border-radius: 6px;
+      box-shadow: inset 0 0 10px #1a0802, 0 0 15px rgba(255, 100, 20, 0.6);
+      transform: rotate(-3deg);
+    }
+    .logs::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 15px;
+      width: 110px;
+      height: 20px;
+      background: #2a1205;
+      border-radius: 6px;
+      transform: rotate(6deg);
+    }
+
+    .flames {
+      position: absolute;
+      bottom: 22px;
+      width: 90px;
+      height: 90px;
+    }
+    .flame-particle {
+      position: absolute;
+      bottom: 0;
+      border-radius: 50% 50% 20% 20%;
+      filter: blur(2px);
+      animation: riseAndBurn 1.6s infinite ease-out;
+    }
+    .f1 {
+      left: 20px;
+      width: 45px;
+      height: 70px;
+      background: radial-gradient(circle, #ffee88 20%, #ff6600 70%, transparent 100%);
+      animation-duration: 1.4s;
+    }
+    .f2 {
+      left: 10px;
+      width: 35px;
+      height: 55px;
+      background: radial-gradient(circle, #fff4a3 10%, #ff3300 80%, transparent 100%);
+      animation-duration: 1.8s;
+      animation-delay: 0.3s;
+    }
+    .f3 {
+      left: 40px;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle, #ffee99 20%, #ff8800 75%, transparent 100%);
+      animation-duration: 1.2s;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes riseAndBurn {
+      0% {
+        transform: translateY(0) scale(0.9) skewX(2deg);
+        opacity: 0.9;
+      }
+      50% {
+        transform: translateY(-25px) scale(1.1) skewX(-4deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-55px) scale(0.3) skewX(6deg);
+        opacity: 0;
+      }
+    }
+
+    .fireplace-text {
+      font-size: 1.05rem;
+      color: #fed7aa;
+      font-style: italic;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    /* INTERACTIVE LOVE BUTTON */
+    .love-btn-wrapper {
+      margin-top: 15px;
+    }
+    .love-button {
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(230, 57, 70, 0.45);
+      transition: all 0.3s ease;
+    }
+    .love-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(230, 57, 70, 0.6);
+      background: linear-gradient(135deg, #ff4d5a, #d90429);
+    }
+    .love-button:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* FLOATING MUSIC CONTROLLER */
+    .music-player-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22, 13, 9, 0.88);
+      border: 1px solid rgba(246, 200, 122, 0.35);
+      backdrop-filter: blur(16px);
+      border-radius: 999px;
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 100;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      transition: all 0.3s ease;
+    }
+    .music-player-bar:hover {
+      border-color: rgba(246, 200, 122, 0.6);
+      box-shadow: 0 15px 40px rgba(246, 200, 122, 0.2);
+    }
+
+    .vinyl-disk {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff8833 25%, #111 26%, #222 65%, #ff8833 70%);
+      border: 2px solid var(--warm-gold);
+      animation: spin 4s linear infinite;
+      animation-play-state: paused;
+    }
+    .vinyl-disk.playing {
+      animation-play-state: running;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .song-details {
+      display: flex;
+      flex-direction: column;
+      max-width: 190px;
+    }
+    .song-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .song-artist {
+      font-size: 0.72rem;
+      color: var(--warm-gold);
+    }
+
+    .play-toggle-btn {
+      background: var(--warm-gold);
+      color: #2b1408;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .play-toggle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* ENVELOPE / WELCOME MODAL */
+    .intro-modal {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #26130b 0%, #0a0503 100%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+    }
+    .intro-modal.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-box {
+      background: rgba(38, 22, 16, 0.9);
+      border: 1px solid rgba(246, 200, 122, 0.4);
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(246, 200, 122, 0.15);
+      position: relative;
+      animation: floatUp 1s ease-out;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .wax-seal {
+      width: 68px;
+      height: 68px;
+      background: radial-gradient(circle, #e63946, #9b111e);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffe5d9;
+      font-size: 1.8rem;
+      box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5), inset 0 2px 5px rgba(255,255,255,0.4);
+    }
+
+    .enter-btn {
+      margin-top: 25px;
+      background: linear-gradient(135deg, var(--warm-gold), #e09f3e);
+      color: #2b1408;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(246, 200, 122, 0.4);
+      transition: all 0.3s ease;
+    }
+    .enter-btn:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 14px 35px rgba(246, 200, 122, 0.6);
+    }
+
+    /* IMAGE MODAL / LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(246, 200, 122, 0.3);
+      border: 2px solid rgba(246, 200, 122, 0.3);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* FLOATING CLICK HEARTS */
+    .click-heart {
+      position: fixed;
+      font-size: 22px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatHeart 1.4s ease-out forwards;
+    }
+    @keyframes floatHeart {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.6) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.5) rotate(25deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Audio Element -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+    <source src="Happy Anniversary - Happy Anniversary Song - Anniversary Song for celebration of a special day.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <!-- Ambient Atmospheric Layers -->
+  <div class="ambient-bg"></div>
+  <div class="ambient-vignette"></div>
+
+  <!-- Snowfall & Ember Particles Canvas -->
+  <canvas id="snow-canvas"></canvas>
+
+  <!-- Fairy Lights String on Top -->
+  <div class="fairy-lights">
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+  </div>
+
+  <!-- INTRO MODAL (Click to Start Music & Reveal Site) -->
+  <div id="intro-modal" class="intro-modal">
+    <div class="envelope-box">
+      <div class="wax-seal">💌</div>
+      <p style="font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: var(--warm-gold); margin-bottom: 8px;">
+        For My Beloved Blu
+      </p>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 12px;">
+        Happy Anniversary ❤️
+      </h2>
+      <p style="color: #d8c2b0; font-size: 0.95rem; line-height: 1.6;">
+        Welcome to our cozy cabin. Outside it is snowing, the fire is warm, and our song is ready to play.
+      </p>
+      
+      <button id="enter-btn" class="enter-btn">
+        <i data-lucide="music-2"></i>
+        <span>Open Our Story &amp; Play Song</span>
+      </button>
+
+      <p style="font-size: 0.78rem; color: #a89180; margin-top: 16px;">
+        With love, Russ
+      </p>
+    </div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-wrapper">
+
+    <!-- HERO HEADER -->
+    <header class="hero-header">
+      <p class="hero-subtitle">Happy Monthly Anniversary</p>
+      <h1 class="hero-title">My Love, My Home</h1>
+      <div class="hero-names">
+        <span>Russ</span>
+        <span class="heart-pulse">❤️</span>
+        <span>Blu</span>
+      </div>
+    </header>
+
+    <!-- SHOWCASE: SLIDESHOW + LETTER -->
+    <div class="showcase-grid">
+
+      <!-- 1. SLIDESHOW OF GAME PHOTOS (ALL 11 PHOTOS) -->
+      <section class="slideshow-card">
+        <div class="slideshow-header-row">
+          <div class="photo-tag">
+            <i data-lucide="gamepad-2" style="width: 15px; height: 15px; color: var(--warm-gold);"></i>
+            <span>Our Gaming Memories</span>
+          </div>
+          <div class="photo-counter" id="photo-counter">
+            1 / 11
+          </div>
+        </div>
+
+        <div class="slideshow-frame" id="slideshow-frame" title="Click to enlarge image">
+          <!-- Slide 1 (Wedding & Connected Forever) -->
+          <div class="slide-item active" data-index="0" data-caption="Blackrose Russ &amp; Blu Blu — Connected Forever 💍❤️">
+            <img src="3212.png" alt="Russ and Blu Connected Forever" loading="eager" style="filter: drop-shadow(0 0 15px rgba(246, 200, 122, 0.4));">
+          </div>
+          <!-- Slide 2 -->
+          <div class="slide-item" data-index="1" data-caption="Every adventure is so much better with you by my side. ✨">
+            <img src="1m.png" alt="Memory 1" loading="lazy">
+          </div>
+          <!-- Slide 3 -->
+          <div class="slide-item" data-index="2" data-caption="We always find a way to laugh, even when things go wrong in the game! 😂">
+            <img src="2.png" alt="Memory 2" loading="lazy">
+          </div>
+          <!-- Slide 4 -->
+          <div class="slide-item" data-index="3" data-caption="My favorite Player 2 and the best teammate I could ever ask for. 🎮">
+            <img src="3m.png" alt="Memory 3" loading="lazy">
+          </div>
+          <!-- Slide 5 -->
+          <div class="slide-item" data-index="4" data-caption="No matter which world we explore, you are always my home. 🏡💖">
+            <img src="image.png" alt="Memory 4" loading="lazy">
+          </div>
+          <!-- Slide 6 -->
+          <div class="slide-item" data-index="5" data-caption="Late-night fun and so many shared smiles. 💕">
+            <img src="092.png" alt="Memory 5" loading="lazy">
+          </div>
+          <!-- Slide 7 -->
+          <div class="slide-item" data-index="6" data-caption="Little moments with you that mean the whole world to me. 🌟">
+            <img src="233.png" alt="Memory 6" loading="lazy">
+          </div>
+          <!-- Slide 8 -->
+          <div class="slide-item" data-index="7" data-caption="Our funny and chaotic gaming moments together! 🎯">
+            <img src="2332.png" alt="Memory 7" loading="lazy">
+          </div>
+          <!-- Slide 9 -->
+          <div class="slide-item" data-index="8" data-caption="I never get tired of playing games and talking with you. 💬">
+            <img src="2342.png" alt="Memory 8" loading="lazy">
+          </div>
+          <!-- Slide 10 -->
+          <div class="slide-item" data-index="9" data-caption="One of my favorite memories with you. 🏆">
+            <img src="66.png" alt="Memory 9" loading="lazy">
+          </div>
+          <!-- Slide 11 -->
+          <div class="slide-item" data-index="10" data-caption="You and me together, always winning at life. ❤️">
+            <img src="77.png" alt="Memory 10" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-row">
+          <button class="nav-btn" id="prev-slide-btn" title="Previous Photo">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          
+          <!-- Caption -->
+          <div class="caption-box" id="slide-caption">
+            Blackrose Russ &amp; Blu Blu — Connected Forever 💍❤️
+          </div>
+
+          <button class="nav-btn" id="next-slide-btn" title="Next Photo">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Thumbnail Strip (11 Photos) -->
+        <div class="thumb-strip" id="thumb-strip">
+          <div class="thumb-btn active" data-index="0" title="Connected Forever"><img src="3212.png" alt="Thumb 1"></div>
+          <div class="thumb-btn" data-index="1"><img src="1m.png" alt="Thumb 2"></div>
+          <div class="thumb-btn" data-index="2"><img src="2.png" alt="Thumb 3"></div>
+          <div class="thumb-btn" data-index="3"><img src="3m.png" alt="Thumb 4"></div>
+          <div class="thumb-btn" data-index="4"><img src="image.png" alt="Thumb 5"></div>
+          <div class="thumb-btn" data-index="5"><img src="092.png" alt="Thumb 6"></div>
+          <div class="thumb-btn" data-index="6"><img src="233.png" alt="Thumb 7"></div>
+          <div class="thumb-btn" data-index="7"><img src="2332.png" alt="Thumb 8"></div>
+          <div class="thumb-btn" data-index="8"><img src="2342.png" alt="Thumb 9"></div>
+          <div class="thumb-btn" data-index="9"><img src="66.png" alt="Thumb 10"></div>
+          <div class="thumb-btn" data-index="10"><img src="77.png" alt="Thumb 11"></div>
+        </div>
+      </section>
+
+      <!-- 2. ROMANTIC LOVE LETTER (NATURAL B2 ENGLISH, NO ARTIFICIAL SYMBOLS) -->
+      <section class="letter-card">
+        <div class="letter-badge">
+          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+          <span>From My Heart to Yours</span>
+        </div>
+
+        <h2 class="letter-salutation">My Dearest Blu,</h2>
+
+        <div class="letter-body">
+          <p>
+            <span class="highlight">Happy anniversary, my love!</span> Another month has passed with you, and honestly, every single day just gets better and better.
+          </p>
+          <p>
+            I still smile whenever I think about our late-night gaming sessions and how much fun we have together. Even when we lose a match or do something totally silly in the game, playing with you is always the best part of my day. You really are my favorite <span class="highlight">Player 2</span> and my best friend.
+          </p>
+          <p>
+            Thank you so much for being in my life. Thank you for your sweet smile, your kindness, and the way you always make me feel happy and safe. Sitting here watching the snow fall while the room is warm, I just feel really lucky to have you by my side.
+          </p>
+          <p>
+            I love you so much, Blu. Here is to another wonderful month and to many more memories together!
+          </p>
+        </div>
+
+        <div class="letter-signature">
+          <span>Forever yours,</span>
+          <span>Russ ❤️</span>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 3. COZY FIREPLACE & INTERACTIVE LOVE SECTION -->
+    <section class="fireplace-section">
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; margin-bottom: 4px;">
+        Cozy by the Fire
+      </h3>
+      <p style="color: var(--warm-gold); font-size: 0.95rem;">
+        Warm flames, gentle snow, and the melody of our favorite memories
+      </p>
+
+      <!-- Animated Fireplace Pit -->
+      <div class="fire-pit">
+        <div class="logs"></div>
+        <div class="flames">
+          <div class="flame-particle f1"></div>
+          <div class="flame-particle f2"></div>
+          <div class="flame-particle f3"></div>
+        </div>
+      </div>
+
+      <p class="fireplace-text">
+        "Whenever the world outside is cold and quiet, you are the warmth that fills my heart. Happy anniversary, Blu."
+      </p>
+
+      <!-- Interactive Send Love Button -->
+      <div class="love-btn-wrapper">
+        <button id="love-btn" class="love-button">
+          <i data-lucide="heart"></i>
+          <span>Send Love to Blu</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FLOATING MUSIC PLAYER -->
+  <div class="music-player-bar">
+    <div class="vinyl-disk" id="vinyl-disk"></div>
+    <div class="song-details">
+      <span class="song-title">Our Anniversary Song</span>
+      <span class="song-artist">Playing for Blu &amp; Russ 🎶</span>
+    </div>
+    <button class="play-toggle-btn" id="play-pause-btn" title="Play / Pause Song">
+      <i data-lucide="play" id="play-icon"></i>
+    </button>
+    <div class="volume-control" style="display: flex; align-items: center; gap: 6px; margin-left: 4px;">
+      <i data-lucide="volume-2" style="width: 16px; height: 16px; color: var(--warm-gold);"></i>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.35" style="width: 65px; accent-color: var(--warm-gold); cursor: pointer;" title="Adjust Volume">
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" id="lightbox-close">
+      <i data-lucide="x"></i>
+    </button>
+    <img id="lightbox-img" src="" alt="Enlarged Memory">
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // ----------------------------------------------------
+    // 1. Audio Control & Intro Modal
+    // ----------------------------------------------------
+    const audio = document.getElementById('bg-audio');
+    audio.volume = 0.35; // Default gentle, cozy volume
+
+    const introModal = document.getElementById('intro-modal');
+    const enterBtn = document.getElementById('enter-btn');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const vinylDisk = document.getElementById('vinyl-disk');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    if (volumeSlider) {
+      volumeSlider.addEventListener('input', (e) => {
+        audio.volume = parseFloat(e.target.value);
+      });
+    }
+
+    let isPlaying = false;
+
+    function playMusic() {
+      audio.play().then(() => {
+        isPlaying = true;
+        vinylDisk.classList.add('playing');
+        playPauseBtn.innerHTML = '<i data-lucide="pause"></i>';
+        lucide.createIcons();
+      }).catch(err => {
+        console.warn('Playback prevented:', err);
+      });
+    }
+
+    function pauseMusic() {
+      audio.pause();
+      isPlaying = false;
+      vinylDisk.classList.remove('playing');
+      playPauseBtn.innerHTML = '<i data-lucide="play"></i>';
+      lucide.createIcons();
+    }
+
+    enterBtn.addEventListener('click', () => {
+      playMusic();
+      introModal.classList.add('hidden');
+      triggerHeartExplosion();
+      resetAutoSlide();
+    });
+
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+
+    // ----------------------------------------------------
+    // 2. Slideshow Functionality (11 Photos)
+    // ----------------------------------------------------
+    const slides = document.querySelectorAll('.slide-item');
+    const thumbs = document.querySelectorAll('.thumb-btn');
+    const captionEl = document.getElementById('slide-caption');
+    const counterEl = document.getElementById('photo-counter');
+    const prevBtn = document.getElementById('prev-slide-btn');
+    const nextBtn = document.getElementById('next-slide-btn');
+    const slideshowFrame = document.getElementById('slideshow-frame');
+    const thumbStrip = document.getElementById('thumb-strip');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    let currentSlide = 0;
+    let autoSlideInterval = null;
+
+    function showSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      currentSlide = index;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentSlide);
+      });
+      thumbs.forEach((thumb, i) => {
+        const isActive = (i === currentSlide);
+        thumb.classList.toggle('active', isActive);
+        if (isActive) {
+          // Scroll thumbnail into view
+          thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+
+      captionEl.textContent = slides[currentSlide].getAttribute('data-caption');
+      counterEl.textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoSlide();
+    });
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const idx = parseInt(thumb.getAttribute('data-index'));
+        showSlide(idx);
+        resetAutoSlide();
+      });
+    });
+
+    let autoSlideTimer = null;
+
+    function startAutoSlide() {
+      // First slide (Connected Forever) stays longer: ~8.5 seconds; others stay 5 seconds
+      const duration = (currentSlide === 0) ? 8500 : 5000;
+      clearTimeout(autoSlideTimer);
+      autoSlideTimer = setTimeout(() => {
+        nextSlide();
+        startAutoSlide();
+      }, duration);
+    }
+
+    function resetAutoSlide() {
+      clearTimeout(autoSlideTimer);
+      startAutoSlide();
+    }
+
+    startAutoSlide();
+
+    // Lightbox zoom on slide click
+    slideshowFrame.addEventListener('click', () => {
+      const activeImg = slides[currentSlide].querySelector('img');
+      lightboxImg.src = activeImg.src;
+      lightbox.classList.add('active');
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    // ----------------------------------------------------
+    // 3. Falling Snow & Ember Canvas
+    // ----------------------------------------------------
+    const canvas = document.getElementById('snow-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
+
+    const particles = [];
+    const maxParticles = 90;
+
+    for (let i = 0; i < maxParticles; i++) {
+      const isEmber = Math.random() < 0.25;
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: isEmber ? Math.random() * 2 + 1 : Math.random() * 2.8 + 1,
+        speedY: isEmber ? -(Math.random() * 0.8 + 0.3) : Math.random() * 1.2 + 0.6,
+        speedX: Math.random() * 1 - 0.5,
+        opacity: Math.random() * 0.7 + 0.3,
+        type: isEmber ? 'ember' : 'snow',
+        swing: Math.random() * Math.PI * 2,
+        swingSpeed: Math.random() * 0.03 + 0.01
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.swing += p.swingSpeed;
+        p.x += Math.sin(p.swing) * 0.6 + p.speedX;
+        p.y += p.speedY;
+
+        if (p.type === 'snow') {
+          if (p.y > height) {
+            p.y = -10;
+            p.x = Math.random() * width;
+          }
+        } else {
+          if (p.y < 0) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+        }
+
+        if (p.x > width) p.x = 0;
+        if (p.x < 0) p.x = width;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+        if (p.type === 'snow') {
+          ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.85})`;
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
+        } else {
+          ctx.fillStyle = `rgba(255, 170, 70, ${p.opacity * 0.9})`;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = 'rgba(255, 120, 20, 0.8)';
+        }
+
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ----------------------------------------------------
+    // 4. Interactive Heart Burst on Screen Click
+    // ----------------------------------------------------
+    const heartSymbols = ['❤️', '💖', '✨', '💕', '🥰', '❄️'];
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('#intro-modal') || e.target.closest('.thumb-btn')) return;
+
+      const heart = document.createElement('div');
+      heart.className = 'click-heart';
+      heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      heart.style.left = `${e.clientX - 10}px`;
+      heart.style.top = `${e.clientY - 10}px`;
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1400);
+    });
+
+    // ----------------------------------------------------
+    // 5. Send Love Button & Confetti
+    // ----------------------------------------------------
+    const loveBtn = document.getElementById('love-btn');
+
+    function triggerHeartExplosion() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 45,
+          spread: 70,
+          origin: { y: 0.7 },
+          colors: ['#ff4d6d', '#ff758f', '#ffb3c1', '#f6c87a']
+        });
+      }
+    }
+
+    loveBtn.addEventListener('click', () => {
+      triggerHeartExplosion();
+
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'click-heart';
+          heart.textContent = '❤️';
+          const rect = loveBtn.getBoundingClientRect();
+          heart.style.left = `${rect.left + Math.random() * rect.width}px`;
+          heart.style.top = `${rect.top}px`;
+          document.body.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 1400);
+        }, i * 120);
+      }
+    });
+  </script>
+</body>
+</html>
